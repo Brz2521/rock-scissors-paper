@@ -24,9 +24,11 @@ function getComputerChoice(){
 }
 
 function playRound(userChoice, npcChoice){
-    if(userChoice == 'rock' && npcChoice == 'scissors'){
-        return console.log(`User input ${userChoice} and computer input ${npcChoice}` + "\n" +
-                    `Rock beats scissors, User wins!`);
+    if(
+        (userChoice == 'rock' && npcChoice == 'scissors') || // '||' means OR operator
+        (userChoice == 'paper' && npcChoice == 'rock') ||
+        (userChoice == 'scissors' && npcChoice == 'paper') 
+    ){ 
 
     } else if (userChoice == 'scissors' && npcChoice == 'rock'){
         return console.log(`User input ${userChoice} and computer input ${npcChoice}` + "\n" + 
