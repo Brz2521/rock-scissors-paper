@@ -24,28 +24,57 @@ function getComputerChoice(){
 }
 
 function playRound(userChoice, npcChoice){
+    if(userChoice === npcChoice){
+        console.log("It's a tie!");
+        return 'tie';
+    }
+
     if(
         (userChoice == 'rock' && npcChoice == 'scissors') || // '||' means OR operator
         (userChoice == 'paper' && npcChoice == 'rock') ||
-        (userChoice == 'scissors' && npcChoice == 'paper') 
-    ){ 
-
-    } else if (userChoice == 'scissors' && npcChoice == 'rock'){
-        return console.log(`User input ${userChoice} and computer input ${npcChoice}` + "\n" + 
-                    `Rock beats scissors, NPC wins!`);
-
-    } else if (userChoice == 'scissors' && npcChoice == 'rock'){
-        return console.log(`User input ${userChoice} and computer input ${npcChoice}` + "\n" + 
-                    `Rock beats scissors, NPC wins!`);
+        (userChoice == 'scissors' && npcChoice == 'paper')
+    ){
+        userScore++;
+        console.log(`You win! ${userChoice} beats ${npcChoice}`);
+        return 'human'; 
+    } else {
+        npcChoice++;
+        console.log(`You lose! ${npcChoice} beats ${userChoice}`);
+        return 'computer';
     }
-
-
 
 }
 
-const userSelection = getUserChoice();
+function playGame(){
+    userScore = 0;
+    npcChoice = 0;
+
+    for(let i=0; i < 3; i++){
+        console.log(`Round ${i+1}: "\n"`);
+        const userSelection = userChoice();
+        const computerSelection = npcChoice();
+        playRound(userSelection,computerSelection);
+    }
+
+    console.log("\nFinal Score:");
+    console.log(`You: ${userScore} - Computer: ${npcScore}`);
+
+    if(userScore > npcChoice){
+        console.log("User wins!")
+
+    }else if(npcChoice > userScore){
+        console.log("Computer wins!");
+    } else {
+        console.log("The game ended in a tie!");
+    }
+
+}
+
+playGame();
+
+/*const userSelection = getUserChoice();
 const computerSelection = getComputerChoice();
-console.log(playRound(userSelection, computerSelection));
+console.log(playRound(userSelection, computerSelection));*/
 
 
 
